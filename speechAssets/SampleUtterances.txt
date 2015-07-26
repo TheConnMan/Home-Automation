@@ -4,6 +4,9 @@ EchoBlindsIntent to {shut|action} the blinds
 EchoBlindsIntent to {open|action} them
 EchoBlindsIntent to {close|action} them
 EchoBlindsIntent to {shut|action} them
+EchoBlindsIntent to {open|action}
+EchoBlindsIntent to {close|action}
+EchoBlindsIntent to {shut|action}
 
 HelpIntent help
 HelpIntent help me
