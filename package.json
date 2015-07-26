@@ -8,5 +8,7 @@
   },
   "author": "TheConnMan",
   "license": "MIT",
-  "dependencies": {}
+  "dependencies": {
+    "sync-request": "^2.0.1"
+  }
 }

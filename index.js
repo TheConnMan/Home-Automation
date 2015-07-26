@@ -2,6 +2,7 @@ var APP_ID = undefined;
 
 var AlexaSkill = require('./AlexaSkill');
 var config = require('./config');
+var request = require('sync-request');
 
 var EchoBlinds = function() {
 	AlexaSkill.call(this, APP_ID);
@@ -32,6 +33,11 @@ EchoBlinds.prototype.intentHandlers = {
 		response.ask('Would you like to open or close the blinds?');
 	}
 };
+
+function sendMessage(payload) {
+	var url = config.host + '/api/v1/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + JSON.stringify(payload);
+	request('GET', url);
+}
 
 exports.handler = function(event, context) {
 	var echoBlinds = new EchoBlinds();
