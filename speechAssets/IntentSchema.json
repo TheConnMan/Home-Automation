@@ -1,3 +1,12 @@
 {
-    "intents": []
+	"intents": [{
+		"intent": "EchoBlindsIntent",
+		"slots": [{
+			"name": "action",
+			"type": "LITERAL"
+		}]
+	}, {
+		"intent": "HelpIntent",
+		"slots": []
+	}]
 }

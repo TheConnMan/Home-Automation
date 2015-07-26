@@ -28,9 +28,6 @@ EchoBlinds.prototype.intentHandlers = {
 	EchoBlindsIntent: function(intent, session, response) {
 
 	},
-	MessageIntent: function(intent, session, response) {
-
-	},
 	HelpIntent: function(intent, session, response) {
 		response.ask('Would you like to open or close the blinds?');
 	}
