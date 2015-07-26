@@ -32,12 +32,7 @@ HomeAutomation.prototype.intentHandlers = {
 	BlindsIntent: function(intent, session, response) {
 		var action = intent.slots.action.value;
 		var payload = createBlindsPayload(action);
-		if (payload) {
-			sendMessage(payload);
-			response.tell('Message sent');
-		} else {
-			response.tell('Sorry, ' + action + ' is not a valid command');
-		}
+		submitPayload(payload, response, action);
 	},
 	HelpIntent: function(intent, session, response) {
 		response.ask('What home automation task would you like to do?');
@@ -53,6 +48,15 @@ function createBlindsPayload(action) {
 		return {
 			open: false
 		};
+	}
+}
+
+function submitPayload(payload, response, action) {
+	if (payload) {
+		sendMessage(payload);
+		response.tell('Message sent');
+	} else {
+		response.tell('Sorry, ' + action + ' is not a valid command');
 	}
 }
 
