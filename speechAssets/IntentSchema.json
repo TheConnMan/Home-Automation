@@ -1,6 +1,6 @@
 {
 	"intents": [{
-		"intent": "EchoBlindsIntent",
+		"intent": "HomeAutomationIntent",
 		"slots": [{
 			"name": "action",
 			"type": "LITERAL"

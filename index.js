@@ -7,29 +7,29 @@ var AlexaSkill = require('./AlexaSkill');
 var config = require('./config');
 var request = require('sync-request');
 
-var EchoBlinds = function() {
+var HomeAutomation = function() {
 	AlexaSkill.call(this, APP_ID);
 };
 
-EchoBlinds.prototype = Object.create(AlexaSkill.prototype);
-EchoBlinds.prototype.constructor = EchoBlinds;
+HomeAutomation.prototype = Object.create(AlexaSkill.prototype);
+HomeAutomation.prototype.constructor = HomeAutomation;
 
-EchoBlinds.prototype.eventHandlers.onSessionStarted = function(sessionStartedRequest, session) {
-	console.log('EchoBlinds onSessionStarted requestId: ' + sessionStartedRequest.requestId + ', sessionId: ' + session.sessionId);
+HomeAutomation.prototype.eventHandlers.onSessionStarted = function(sessionStartedRequest, session) {
+	console.log('HomeAutomation onSessionStarted requestId: ' + sessionStartedRequest.requestId + ', sessionId: ' + session.sessionId);
 };
 
-EchoBlinds.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
-	console.log('EchoBlinds onLaunch requestId: ' + launchRequest.requestId + ', sessionId: ' + session.sessionId);
-	var speechOutput = 'Welcome to Echo Blinds. What would you like to do?';
+HomeAutomation.prototype.eventHandlers.onLaunch = function(launchRequest, session, response) {
+	console.log('HomeAutomation onLaunch requestId: ' + launchRequest.requestId + ', sessionId: ' + session.sessionId);
+	var speechOutput = 'Welcome to Home Automation. What would you like to do?';
 	response.ask(speechOutput);
 };
 
-EchoBlinds.prototype.eventHandlers.onSessionEnded = function(sessionEndedRequest, session) {
-	console.log('EchoBlinds onSessionEnded requestId: ' + sessionEndedRequest.requestId + ', sessionId: ' + session.sessionId);
+HomeAutomation.prototype.eventHandlers.onSessionEnded = function(sessionEndedRequest, session) {
+	console.log('HomeAutomation onSessionEnded requestId: ' + sessionEndedRequest.requestId + ', sessionId: ' + session.sessionId);
 };
 
-EchoBlinds.prototype.intentHandlers = {
-	EchoBlindsIntent: function(intent, session, response) {
+HomeAutomation.prototype.intentHandlers = {
+	HomeAutomationIntent: function(intent, session, response) {
 		var action = intent.slots.action.value;
 		var payload = createPayload(action);
 		if (payload) {
@@ -40,7 +40,7 @@ EchoBlinds.prototype.intentHandlers = {
 		}
 	},
 	HelpIntent: function(intent, session, response) {
-		response.ask('Would you like to open or close the blinds?');
+		response.ask('What home automation task would you like to do?');
 	}
 };
 
@@ -63,6 +63,6 @@ function sendMessage(payload) {
 }
 
 exports.handler = function(event, context) {
-	var echoBlinds = new EchoBlinds();
-	echoBlinds.execute(event, context);
+	var homeAutomation = new HomeAutomation();
+	homeAutomation.execute(event, context);
 };
