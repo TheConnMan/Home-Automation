@@ -1,6 +1,7 @@
 var APP_ID = undefined;
 
 var AlexaSkill = require('./AlexaSkill');
+var config = require('./config');
 
 var EchoBlinds = function() {
 	AlexaSkill.call(this, APP_ID);
