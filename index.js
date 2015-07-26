@@ -29,9 +29,9 @@ HomeAutomation.prototype.eventHandlers.onSessionEnded = function(sessionEndedReq
 };
 
 HomeAutomation.prototype.intentHandlers = {
-	HomeAutomationIntent: function(intent, session, response) {
+	BlindsIntent: function(intent, session, response) {
 		var action = intent.slots.action.value;
-		var payload = createPayload(action);
+		var payload = createBlindsPayload(action);
 		if (payload) {
 			sendMessage(payload);
 			response.tell('Message sent');
@@ -44,7 +44,7 @@ HomeAutomation.prototype.intentHandlers = {
 	}
 };
 
-function createPayload(action) {
+function createBlindsPayload(action) {
 	if (OPEN_COMMANDS.indexOf(action) !== -1) {
 		return {
 			open: true

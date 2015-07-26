@@ -1,6 +1,6 @@
-HomeAutomationIntent to {open|action} the blinds
-HomeAutomationIntent to {close|action} the blinds
-HomeAutomationIntent to {shut|action} the blinds
+BlindsIntent to {open|action} the blinds
+BlindsIntent to {close|action} the blinds
+BlindsIntent to {shut|action} the blinds
 
 HelpIntent help
 HelpIntent help me

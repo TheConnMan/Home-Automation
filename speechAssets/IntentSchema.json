@@ -1,6 +1,6 @@
 {
 	"intents": [{
-		"intent": "HomeAutomationIntent",
+		"intent": "BlindsIntent",
 		"slots": [{
 			"name": "action",
 			"type": "LITERAL"
