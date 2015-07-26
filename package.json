@@ -1,0 +1,12 @@
+{
+  "name": "echo-blinds-skill",
+  "version": "0.1.0",
+  "description": "Alexa Skill for opening and closing blinds using https://github.com/TheConnMan/Message-Relay and https://github.com/TheConnMan/EchoBlinds",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "TheConnMan",
+  "license": "MIT",
+  "dependencies": {}
+}
