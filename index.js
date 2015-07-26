@@ -57,7 +57,9 @@ function createPayload(action) {
 }
 
 function sendMessage(payload) {
-	var url = config.host + '/api/v1/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + encodeURIComponent(JSON.stringify(payload));
+	var payloadString = JSON.stringify(payload);
+	console.log('Sending payload: ' + payloadString);
+	var url = config.host + '/api/v1/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + encodeURIComponent(payloadString);
 	var res = request('GET', url);
 	console.log(res.getBody('utf8'));
 }
