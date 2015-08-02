@@ -9,6 +9,6 @@
   "author": "TheConnMan",
   "license": "MIT",
   "dependencies": {
-    "sync-request": "^2.0.1"
+    "http": "0.0.0"
   }
 }

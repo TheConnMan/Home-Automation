@@ -5,7 +5,7 @@ var CLOSE_COMMANDS = ['close', 'shut'];
 
 var AlexaSkill = require('./AlexaSkill');
 var config = require('./config');
-var request = require('sync-request');
+var http = require('http');
 
 var HomeAutomation = function() {
 	AlexaSkill.call(this, APP_ID);
@@ -53,19 +53,26 @@ function createBlindsPayload(action) {
 
 function submitPayload(payload, response, action) {
 	if (payload) {
-		sendMessage(payload);
-		response.tell('Message sent');
+		sendMessage(payload, function() {
+			response.tell('Ok');
+		});
 	} else {
 		response.tell('Sorry, ' + action + ' is not a valid command');
 	}
 }
 
-function sendMessage(payload) {
+function sendMessage(payload, fn) {
 	var payloadString = JSON.stringify(payload);
 	console.log('Sending payload: ' + payloadString);
-	var url = config.host + '/api/v1/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + encodeURIComponent(payloadString);
-	var res = request('GET', url);
-	console.log(res.getBody('utf8'));
+	var options = {
+		host: config.host,
+		port: 80,
+		path: '/api/v1/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + encodeURIComponent(payloadString)
+	};
+	http.get(options, function(res) {
+		console.log(res.statusCode);
+		fn();
+	});
 }
 
 exports.handler = function(event, context) {

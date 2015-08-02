@@ -1,5 +1,5 @@
 {
     "apiKey": "xxxxapikeyxxxx"
-    "host": "http://relay.mysite.com",
+    "host": "relay.mysite.com",
     "clientId": "echo-blinds"
 }
