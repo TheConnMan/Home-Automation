@@ -1,9 +1,22 @@
-// Alexa SDK for JavaScript v1.0.00
-// Copyright (c) 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved. Use is subject to license terms.
+/**
+    Copyright 2014-2015 Amazon.com, Inc. or its affiliates. All Rights Reserved.
+
+    Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with the License. A copy of the License is located at
+
+        http://aws.amazon.com/apache2.0/
+
+    or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
+*/
+
 'use strict';
 
 function AlexaSkill(appId) {
 	this._appId = appId;
+}
+
+AlexaSkill.speechOutput = {
+	PLAIN_TEXT: 'PlainText',
+	SSML: 'SSML'
 }
 
 AlexaSkill.prototype.requestHandlers = {
@@ -32,7 +45,7 @@ AlexaSkill.prototype.eventHandlers = {
 	onSessionStarted: function(sessionStartedRequest, session) {},
 
 	/**
-	 * Called when the user launches the skill without specifying what they want.
+	 * Called when the user invokes the skill without specifying what they want.
 	 * The subclass must override this function and provide feedback to the user.
 	 */
 	onLaunch: function(launchRequest, session, response) {
@@ -100,19 +113,37 @@ var Response = function(context, session) {
 
 Response.prototype = (function() {
 	var buildSpeechletResponse = function(options) {
+		var outputSpeech;
+		if (options.output && options.output.type === 'SSML') {
+			outputSpeech = {
+				type: options.output.type,
+				ssml: options.output.speech
+			};
+		} else {
+			outputSpeech = {
+				type: options.output.type || 'PlainText',
+				text: options.output.speech || options.output
+			};
+		}
 		var alexaResponse = {
-			outputSpeech: {
-				type: 'PlainText',
-				text: options.output
-			},
+			outputSpeech: outputSpeech,
 			shouldEndSession: options.shouldEndSession
 		};
 		if (options.reprompt) {
-			alexaResponse.reprompt = {
-				outputSpeech: {
-					type: 'PlainText',
-					text: options.reprompt
+			var outputRepromptSpeech;
+			if (options.reprompt && options.reprompt.type === 'SSML') {
+				outputRepromptSpeech = {
+					type: options.reprompt.type,
+					ssml: options.reprompt.speech
 				}
+			} else {
+				outputRepromptSpeech = {
+					type: options.reprompt.type || 'PlainText',
+					text: options.reprompt.speech || options.reprompt
+				}
+			}
+			alexaResponse.reprompt = {
+				outputSpeech: outputRepromptSpeech
 			};
 		}
 		if (options.cardTitle && options.cardContent) {
