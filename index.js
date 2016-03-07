@@ -66,8 +66,8 @@ function sendMessage(payload, fn) {
 	console.log('Sending payload: ' + payloadString);
 	var options = {
 		host: config.host,
-		port: 80,
-		path: '/api/v1/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + encodeURIComponent(payloadString)
+		port: 3000,
+		path: '/api/put?key=' + config.apiKey + '&clientId=' + config.clientId + '&payload=' + encodeURIComponent(payloadString)
 	};
 	http.get(options, function(res) {
 		console.log(res.statusCode);
